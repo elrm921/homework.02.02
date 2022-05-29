@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 
 struct account {
     std::string name;
@@ -13,30 +14,25 @@ void update(account &ac, double new_amount) {
 
 void print(account &ac) {
     account *p = &ac;
-    std::cout << "Ваш счёт: " << ac.name << ", " << ac.id << ", " << ac.amount << "\n";
+    std::cout << std::fixed << std::setprecision(2) << "Ваш счёт: " << p->name << ", " << p->id << ", " << p->amount << "\n";
 }
 
 int main() {
-    int id;
-    std::string name;
-    double amount;
+    account ac = {"0", 0, 0};
 
-    account ac;
     std::cout << "Введите номер счёта: ";
-    std::cin >> id;
+    std::cin >> ac.id;
     std::cout << "Введите имя владельца: ";
-    std::cin >> name;
+    std::cin >> ac.name;
     std::cout << "Введите баланс: ";
-    std::cin >> amount;
+    std::cin >> ac.amount;
 
-    ac.id = id;
-    ac.name = name;
-    ac.amount = amount;
-
-    double new_amount;
+    double new_amount = 0;
     std::cout << "Введите новый баланс: ";
     std::cin >> new_amount;
 
     update(ac, new_amount);
     print(ac);
+
+    return 0;
 }
